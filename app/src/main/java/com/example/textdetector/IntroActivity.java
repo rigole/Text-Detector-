@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -70,6 +71,7 @@ public class IntroActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(mainActivity);
+                saveprefsData();
             }
         });
 
@@ -93,6 +95,14 @@ public class IntroActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void saveprefsData() {
+
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putBoolean("isIntroOpnend",true);
+        editor.commit();
     }
 
 
