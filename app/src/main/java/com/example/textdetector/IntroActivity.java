@@ -5,6 +5,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
 import com.google.android.material.tabs.TabLayout;
@@ -18,6 +20,8 @@ public class IntroActivity extends AppCompatActivity {
     TabLayout tabindicator;
     Button btn, btnGetStarted;
     int position = 0;
+    Animation btnAnim;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,7 @@ public class IntroActivity extends AppCompatActivity {
          tabindicator = findViewById(R.id.tablayout);
           btn = findViewById(R.id.button);
           btnGetStarted = findViewById(R.id.btn_get_started);
+          btnAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.button_animation);
         // fill list screen
 
         List<ScreenItem> items = new ArrayList<>();
@@ -60,7 +65,9 @@ public class IntroActivity extends AppCompatActivity {
         tabindicator.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-
+              if (tab.getPosition() == items.size()-1){
+                  loadLastScreen();
+              }
             }
 
             @Override
@@ -80,5 +87,7 @@ public class IntroActivity extends AppCompatActivity {
         btn.setVisibility(View.INVISIBLE);
         btnGetStarted.setVisibility(View.VISIBLE);
         tabindicator.setVisibility(View.INVISIBLE);
+
+        //let create the button animation
     }
 }
