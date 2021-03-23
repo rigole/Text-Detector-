@@ -5,18 +5,21 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 
+import com.google.android.material.tabs.TabLayout;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class IntroActivity extends AppCompatActivity {
     private ViewPager screenPager;
     IntroViewPagerAdapter introViewPagerAdapter;
+    TabLayout tabindicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
-
+         tabindicator = findViewById(R.id.tablayout);
         // fill list screen
 
         List<ScreenItem> items = new ArrayList<>();
@@ -28,5 +31,9 @@ public class IntroActivity extends AppCompatActivity {
         screenPager = findViewById(R.id.screen_viewpager);
         introViewPagerAdapter = new IntroViewPagerAdapter(this,items);
         screenPager.setAdapter(introViewPagerAdapter);
+
+        // setup tablayout with viewpager
+
+        tabindicator.setupWithViewPager(screenPager);
     }
 }
