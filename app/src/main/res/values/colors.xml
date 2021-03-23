@@ -8,6 +8,14 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <!-- colors for button style -->
+    <color name="gradiant_start_color">#4c84ff</color>
+    <color name="gradiant_end_color">#10a3fe</color>
+
+    <!-- colors for tab and screen text -->
+    <color name="tab_indicator_gray">#4c84ff</color>
+    <color name="intro_title_color">#000000</color>
+    <color name="intro_description_color">#656565</color>
 
 
 
