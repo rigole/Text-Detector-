@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -14,12 +16,16 @@ public class IntroActivity extends AppCompatActivity {
     private ViewPager screenPager;
     IntroViewPagerAdapter introViewPagerAdapter;
     TabLayout tabindicator;
+    Button btn, btnGetStarted;
+    int position = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
          tabindicator = findViewById(R.id.tablayout);
+          btn = findViewById(R.id.button);
+          btnGetStarted = findViewById(R.id.btn_get_started);
         // fill list screen
 
         List<ScreenItem> items = new ArrayList<>();
@@ -35,5 +41,44 @@ public class IntroActivity extends AppCompatActivity {
         // setup tablayout with viewpager
 
         tabindicator.setupWithViewPager(screenPager);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                position = screenPager.getCurrentItem();
+
+                if(position < items.size()){
+                    position++;
+                    screenPager.setCurrentItem(position);
+                }
+                
+                if(position == items.size() - 1){
+                    loadLastScreen();
+                }
+
+            }
+        });
+        tabindicator.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
+
+
+    private void loadLastScreen() {
+        btn.setVisibility(View.INVISIBLE);
+        btnGetStarted.setVisibility(View.VISIBLE);
+        tabindicator.setVisibility(View.INVISIBLE);
     }
 }
