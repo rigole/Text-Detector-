@@ -3,6 +3,7 @@ package com.example.textdetector;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -62,6 +63,18 @@ public class IntroActivity extends AppCompatActivity {
 
             }
         });
+
+
+        btnGetStarted.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(mainActivity);
+            }
+        });
+
+
+
         tabindicator.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -89,5 +102,6 @@ public class IntroActivity extends AppCompatActivity {
         tabindicator.setVisibility(View.INVISIBLE);
 
         //let create the button animation
+        btnGetStarted.setAnimation(btnAnim);
     }
 }
